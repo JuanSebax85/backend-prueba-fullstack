@@ -17,14 +17,18 @@ public class NotaController {
 
     @GetMapping
     public List<NotaDTO> listar() {
-        return repo.findAll().stream().map(n -> new NotaDTO(
-                n.getId(),
-                n.getValor(),
-                n.getAlumno().getId(),
-                n.getAlumno().getNombre(),
-                n.getAlumno().getApellido(),
-                n.getMateria().getId(),
-                n.getMateria().getNombre())).toList();
+        return repo.findAll()
+                .stream()
+                .filter(n -> n.getAlumno() != null && n.getMateria() != null)
+                .map(n -> new NotaDTO(
+                        n.getId(),
+                        n.getValor(),
+                        n.getAlumno().getId(),
+                        n.getAlumno().getNombre(),
+                        n.getAlumno().getApellido(),
+                        n.getMateria().getId(),
+                        n.getMateria().getNombre()))
+                .toList();
     }
 
     @PostMapping
@@ -49,11 +53,16 @@ public class NotaController {
 
     @PutMapping("/{id}")
     public Nota actualizar(@PathVariable Long id, @RequestBody Nota n) {
-        if (!repo.existsById(id)) {
-            throw new RuntimeException("Nota no encontrada");
-        }
-        n.setId(id);
-        return repo.save(n);
+
+        Nota existente = repo.findById(id)
+                .orElseThrow(() -> new RuntimeException("Nota no encontrada"));
+
+        existente.setValor(n.getValor());
+
+        existente.setAlumno(n.getAlumno());
+        existente.setMateria(n.getMateria());
+
+        return repo.save(existente);
     }
 
     @DeleteMapping("/{id}")

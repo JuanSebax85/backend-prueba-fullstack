@@ -2,6 +2,8 @@ package com.prueba.backend.controller;
 
 import com.prueba.backend.model.Alumno;
 import com.prueba.backend.repository.AlumnoRepository;
+import com.prueba.backend.repository.NotaRepository;
+
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -14,6 +16,7 @@ import java.util.List;
 public class AlumnoController {
 
     private final AlumnoRepository repo;
+    private final NotaRepository notaRepository;
 
     @GetMapping
     public List<Alumno> listar() {
@@ -48,10 +51,23 @@ public class AlumnoController {
 
     @DeleteMapping("/{id}")
     public void eliminar(@PathVariable Long id) {
-        if (!repo.existsById(id)) {
+
+        Alumno alumno = repo.findById(id)
+                .orElseThrow(() -> new org.springframework.web.server.ResponseStatusException(
+                        HttpStatus.NOT_FOUND,
+                        "Alumno no encontrado"));
+
+        boolean tieneNotas = !notaRepository.findAll()
+                .stream()
+                .filter(n -> n.getAlumno().getId().equals(id))
+                .toList()
+                .isEmpty();
+
+        if (tieneNotas) {
             throw new org.springframework.web.server.ResponseStatusException(
-                    HttpStatus.NOT_FOUND,
-                    "Alumno no encontrado");
+                    HttpStatus.BAD_REQUEST,
+                    "El alumno " + alumno.getNombre() + " " + alumno.getApellido()
+                            + " tiene notas registradas en el sistema");
         }
 
         repo.deleteById(id);

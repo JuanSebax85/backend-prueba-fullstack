@@ -10,7 +10,8 @@ import lombok.NoArgsConstructor;
 public class NotaDTO {
 
     private Long id;
-    private double valor;
+
+    private Double valor;
 
     private Long alumnoId;
     private String alumnoNombre;
