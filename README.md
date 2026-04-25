@@ -20,7 +20,7 @@ DB_PASSWORD=1234
 DB_DRIVER=org.postgresql.Driver
 
 --------------------------Ejecución del proyecto------------------------------
-
+Una vez clonado el repositorio, desde la raiz del proyecto ejecutar:
 1. Levantar la base de datos:
   docker compose up -d db
 
