@@ -36,24 +36,24 @@ Una vez el proyecto esté en ejecución, la API estará disponible con los sigui
 
 Alumnos
 GET http://localhost:8080/alumnos
-POST http://localhost:8080/alumnos
-GET http://localhost:8080/alumnos/{id}
-PUT http://localhost:8080/alumnos/{id}
-DELETE http://localhost:8080/alumnos/{id}
+POST /alumnos
+GET  /alumnos/{id}
+PUT  /alumnos/{id}
+DELETE /alumnos/{id}
 
 Materias
 GET http://localhost:8080/materias
-POST http://localhost:8080/materias
-GET http://localhost:8080/materias/{id}
-PUT http://localhost:8080/materias/{id}
-DELETE http://localhost:8080/materias/{id}
+POST  /materias
+GET   /materias/{id}
+PUT   /materias/{id}
+DELETE /materias/{id}
 
 Notas
 GET http://localhost:8080/notas
-POST http://localhost:8080/notas
-GET http://localhost:8080/notas/{id}
-PUT http://localhost:8080/notas/{id}
-DELETE http://localhost:8080/notas/{id}
+POST /notas
+GET  /notas/{id}
+PUT  /notas/{id}
+DELETE /notas/{id}
 
 IMPORTANTE
 {id} representa el identificador del recurso en la base de datos.
