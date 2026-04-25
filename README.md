@@ -1,9 +1,9 @@
-Backend Prueba Técnica 
+# Backend Prueba Técnica 
 
 Este proyecto es una API REST desarrollada con Spring Boot, conectada a una base de datos PostgreSQL 
 y completamente dockerizada para su ejecución en cualquier entorno sin configuración adicional.
 
-Tecnologías utilizadas
+# Tecnologías utilizadas
 Java 17
 Spring Boot 3
 Spring Data JPA
@@ -12,14 +12,14 @@ Docker & Docker Compose
 Maven
 Configuración de variables de entorno
 
-El proyecto utiliza las siguientes variables de entorno:
+# El proyecto utiliza las siguientes variables de entorno:
 
 DB_URI=jdbc:postgresql://db:5432/prueba
 DB_USER=postgres
 DB_PASSWORD=1234
 DB_DRIVER=org.postgresql.Driver
 
---------------------------Ejecución del proyecto------------------------------
+# --------------------------Ejecución del proyecto------------------------------
 Una vez clonado el repositorio, desde la raiz del proyecto ejecutar:
 1. Levantar la base de datos:
   docker compose up -d db
@@ -31,7 +31,7 @@ Una vez clonado el repositorio, desde la raiz del proyecto ejecutar:
 3. Levantar el backend:
    docker compose up --build backend
 
---------------------------Pruebas de la API------------------------------------
+# --------------------------Pruebas de la API------------------------------------
 Una vez el proyecto esté en ejecución, la API estará disponible con los siguientes endpoints listos para ser probados en POSTMAN o servicios similares:
 
 Alumnos
@@ -55,7 +55,7 @@ GET  /notas/{id}
 PUT  /notas/{id}
 DELETE /notas/{id}
 
----------------------IMPORTANTE---------------------------------
+# ---------------------IMPORTANTE---------------------------------
 {id} representa el identificador del recurso en la base de datos.
 En Postman debe reemplazarse por un valor real según los datos existentes.
 
